@@ -23,6 +23,7 @@ public class ApiService {
     private static ApiService instance;
     private static String URL_NAME = "https://jsonplaceholder.typicode.com/";
     private Gson gson = new Gson();
+    private CloseableHttpClient httpclient = HttpClients.createDefault();
 
 
     public static ApiService getInstance() {
@@ -57,7 +58,6 @@ public class ApiService {
 
     public void postRequest(Posts posts) {
         try {
-            CloseableHttpClient httpclient = HttpClients.createDefault();
             HttpPost httpPost = new HttpPost("https://jsonplaceholder.typicode.com/posts");
             StringEntity postingString = new StringEntity(gson.toJson(posts));
             httpPost.setEntity(postingString);
@@ -81,7 +81,6 @@ public class ApiService {
 
     public void putRequest(Posts posts) {
         try {
-            CloseableHttpClient httpclient = HttpClients.createDefault();
             HttpPut httpPut = new HttpPut("https://jsonplaceholder.typicode.com/posts/1");
             System.out.println("Executing request " + httpPut.getRequestLine());
             StringEntity postingString = new StringEntity(gson.toJson(posts));
@@ -104,7 +103,6 @@ public class ApiService {
 
     public void deleteRequest(Posts posts) {
         try {
-            CloseableHttpClient httpclient = HttpClients.createDefault();
             HttpDelete httpDelete = new HttpDelete("https://jsonplaceholder.typicode.com/posts/1");
             System.out.println("Executing request " + httpDelete.getRequestLine());
             ResponseHandler< String > responseHandler = response -> {
