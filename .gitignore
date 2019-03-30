@@ -1,0 +1,6 @@
+*.iml
+*.md
+out/
+.idea/
+target/
+test/
