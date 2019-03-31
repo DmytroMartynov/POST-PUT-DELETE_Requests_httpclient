@@ -2,11 +2,20 @@ package dmytro.martynov;
 
 
 import dmytro.martynov.Resourse.Posts;
+import dmytro.martynov.Resourse.Users;
+
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
         ApiService service = ApiService.getInstance();
         Posts post = service.getPostById(1);
+        List<Posts> postsList = service.getPosts();
+        Users user = service.getUserById(10);
+        System.out.println(postsList);
+        System.out.println("------------------------------");
+        System.out.println(user);
+        System.out.println("------------------------------");
         System.out.println(post);
         System.out.println("------------------------------");
         System.out.println(service.getComentsFromPostId(10));
@@ -18,6 +27,10 @@ public class Main {
         service.putRequest(post);
         service.postRequest(post);
         service.deleteRequest(post);
+
+
+
+
 
 
     }
