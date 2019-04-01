@@ -1,4 +1,5 @@
 package dmytro.martynov;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import dmytro.martynov.Resourse.*;
@@ -12,6 +13,7 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -56,10 +58,11 @@ public class ApiService {
         return urlString;
     }
 
-    public void postRequest(Posts posts) {
+    public void postRequest(Posts posts) throws IOException {
         try {
             HttpPost httpPost = new HttpPost("https://jsonplaceholder.typicode.com/posts");
             StringEntity postingString = new StringEntity(gson.toJson(posts));
+            httpPost.addHeader("content-type", "application/json");
             httpPost.setEntity(postingString);
             System.out.println("Executing request " + httpPost.getRequestLine());
             ResponseHandler< String > responseHandler = response -> {
@@ -84,6 +87,7 @@ public class ApiService {
             HttpPut httpPut = new HttpPut("https://jsonplaceholder.typicode.com/posts/1");
             System.out.println("Executing request " + httpPut.getRequestLine());
             StringEntity postingString = new StringEntity(gson.toJson(posts));
+            httpPut.addHeader("content-type", "application/json");
             httpPut.setEntity(postingString);
             ResponseHandler< String > responseHandler = response -> {
                 int status = response.getStatusLine().getStatusCode();

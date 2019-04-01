@@ -4,10 +4,11 @@ package dmytro.martynov;
 import dmytro.martynov.Resourse.Posts;
 import dmytro.martynov.Resourse.Users;
 
+import java.io.IOException;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         ApiService service = ApiService.getInstance();
         Posts post = service.getPostById(1);
         List<Posts> postsList = service.getPosts();
